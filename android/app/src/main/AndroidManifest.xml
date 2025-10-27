@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:label="efridge"
         android:name="${applicationName}"
@@ -30,6 +31,31 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- Pushy background service + receivers -->
+        <service
+            android:name="me.pushy.sdk.services.PushySocketService"
+            android:exported="false"
+            android:stopWithTask="false" />
+
+        <receiver
+            android:name="me.pushy.sdk.receiver.PushyUpdateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="me.pushy.sdk.action.UPDATE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="me.pushy.sdk.receiver.PushyBootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.RESTART" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

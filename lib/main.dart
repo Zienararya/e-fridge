@@ -1,8 +1,17 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:efridge/view/mainPage.dart';
+import 'services/supabase_service.dart';
+import 'services/push_service.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SupabaseService.init();
+  await PushService.initLocalNotifications();
+  // Register device token and listen for notifications
+  final token = await PushService.registerDeviceToken();
+  await PushService.upsertDeviceToken(token);
+  PushService.listenBackgroundMessages();
   runApp(const MyApp());
 }
 
