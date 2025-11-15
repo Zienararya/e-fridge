@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "514653375633",
+    "project_id": "efridge-bd942",
+    "storage_bucket": "efridge-bd942.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514653375633:android:1ccd13023e144b09f30330",
+        "android_client_info": {
+          "package_name": "com.example.efridge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Kk5wdiqBJUkoUmw95pOAjmg7i0GqsFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

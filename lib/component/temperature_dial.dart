@@ -6,8 +6,8 @@ class TemperatureDial extends StatelessWidget {
     super.key,
     required this.temperature,
     required this.mode,
-    this.minTemp = 12,
-    this.maxTemp = 28,
+    this.minTemp = 0,
+    this.maxTemp = 100,
     this.size = 240,
   });
 
@@ -21,7 +21,6 @@ class TemperatureDial extends StatelessWidget {
   Widget build(BuildContext context) {
     final clamped = temperature.clamp(minTemp, maxTemp);
     final t = ((clamped - minTemp) / (maxTemp - minTemp)).clamp(0.0, 1.0);
-    final onSurface = Theme.of(context).colorScheme.onSurface;
     return SizedBox(
       width: size,
       height: size,
@@ -77,15 +76,9 @@ class TemperatureDial extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _TempText(value: temperature, color: onSurface),
+              _TempText(value: temperature, color: Colors.black),
               const SizedBox(height: 4),
-              Text(
-                mode,
-                style: TextStyle(
-                  color: onSurface.withOpacity(0.6),
-                  fontSize: 12,
-                ),
-              ),
+              Text(mode, style: TextStyle(color: Colors.black, fontSize: 12)),
             ],
           ),
         ],
@@ -116,9 +109,9 @@ class _TempText extends StatelessWidget {
             ),
           ),
           TextSpan(
-            text: '.${minor.toString()}',
+            text: '.${minor.toString()} °C',
             style: TextStyle(
-              color: color.withOpacity(0.6),
+              color: color,
               fontSize: 22,
               fontWeight: FontWeight.w500,
             ),
@@ -153,16 +146,16 @@ class _DialPainter extends CustomPainter {
       startAngle: -math.pi / 2,
       endAngle: 3 * math.pi / 2,
       colors: const [
-        Color(0xFFB71C1C), // deep hot red
-        Color(0xFFE53935), // red
-        Color(0xFFFFA726), // orange
-        Color(0xFFFFD54F), // yellow (amber 300)
-        Color(0xFFFFFFFF), // white
-        Color(0xFF64B5F6), // light blue
-        Color(0xFF1E88E5), // blue
         Color(0xFF0B4F9C), // deep cold blue (coldest)
+        Color(0xFF1E88E5), // blue
+        Color(0xFF64B5F6), // light blue
+        Color(0xFFFFFFFF), // white
+        Color(0xFFFFD54F), // yellow (amber 300)
+        Color(0xFFFFA726), // orange
+        Color(0xFFE53935), // red
+        Color(0xFFB71C1C), // deep hot red
       ],
-      stops: const [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0],
+      stops: const [0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.99, 1.0],
       transform: const GradientRotation(0.0),
     );
 

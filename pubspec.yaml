@@ -13,8 +13,12 @@ dependencies:
   adaptive_theme: ^3.7.2
   supabase_flutter: ^2.5.8
   http: ^1.2.2
-  pushy_flutter: ^2.0.4
   flutter_local_notifications: ^17.2.3
+  shared_preferences: ^2.3.2
+  syncfusion_flutter_charts: ^31.2.3
+  intl: ^0.20.2
+  firebase_core: ^3.15.2
+  firebase_messaging: ^15.2.10
 
 dev_dependencies:
   flutter_test:
